@@ -1,0 +1,150 @@
+<html>
+<head>
+<link rel="stylesheet" href="/layout/styles/baseL.css" type="text/css">
+</head>
+<body>
+
+<div class="baseAlto">
+		<div class="containerSW">
+				<a th:href="@{/home}">
+					<img src="/immagini/sew2-removebg-preview.png">
+				</a>
+		</div>
+</div>
+<div class="baseDati">
+	<a th:href="@{/Profilo}">
+		<div class="baseDatiUsername">[[${utente.username}]]</div>
+		<div class="sotto5px">
+	</a>
+		<a th:href="@{/logout}">Logout</a>
+	</div>
+</div>
+
+			<div class="tastoBackHome">
+				<a th:href="@{/home}" class="tastoBackHomeimg">
+					<img src="/immagini/freccia2.png">
+				</a>
+			<div class="sotto25pxDestra5px">Torna alla home</div>
+			</div>
+		
+		<div class="centrolavoro1">
+			Cerca un lavoro specifico:
+			
+			<div class="dropdown">
+			  <button onclick="myFunction()" class="dropbtn">[[${prof}]]</button>
+			  <div id="myDropdown" class="dropdown-content">
+			  <a href="#all" onclick="document.location='/lavoro2/Tutti/1'" >Tutti</a>			   
+			    <a href="#indeterminato" onclick="document.location='/lavoro1/indeterminato/1'">tempo indeterminato</a>
+			    <a href="#determinato" onclick="document.location='/lavoro1/determinato/1'">tempo determinato</a>
+			    <a href="#part-time" onclick="document.location='/lavoro1/part-time/1'">part-time</a>
+			    <a href="#apprendistato" onclick="document.location='/lavoro1/apprendistato/1'">apprendistato</a>
+			    <a href="#intermittente" onclick="document.location='/lavoro1/intermittente/1'">intermittente</a>
+			    <a href="#somministrazione" onclick="document.location='/lavoro1/somministrazione/1'">somministrazione</a>
+			  </div>
+			</div>
+		
+		</div>
+		<div th:if="${paginaVuota == 'no'}">
+			<div class="centrolavoro2">
+				<table  th:each="annuncio:${annunci1}" class="annuncioBordo" border="1">
+					<tr>
+						<td>
+							<div class="annuncioTabella">
+							<div class="annuncioAggiustaposizione">	
+								<div class="annuncioNome">[[${annuncio.nome}]]</div>
+								<div class="annuncioTipologia">[[${annuncio.tipologia}]]</div>
+								<div th:if="${utente.role=='ADMIN'}" class="annuncioSpazioImmagine">
+											<a th:href=" '/Cancella2/' + @{${annuncio.id}}"><img src="/immagini/x.png"></a>
+								</div>
+							</div>
+								<div class="annuncioCognome">[[${annuncio.cognome}]]</div>
+								<div class="annuncioTesto">[[${annuncio.testo}]] </div>
+								<div class="annuncioEmail"> Email : [[${annuncio.email}]]</div>
+								<div class="annuncioTelefono">Telefono: [[${annuncio.telefono}]]</div>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		<div class="centrolavoro3">
+				<table  th:each="annuncio:${annunci2}" class="annuncioBordo" border="1">
+					<tr>
+						<td>
+							<div class="annuncioTabella">
+							<div class="annuncioAggiustaposizione">	
+								<div class="annuncioNome">[[${annuncio.nome}]]</div>
+								<div class="annuncioTipologia">[[${annuncio.tipologia}]]</div>
+								<div th:if="${utente.role=='ADMIN'}" class="annuncioSpazioImmagine">
+											<a th:href=" '/Cancella2/' + @{${annuncio.id}}"><img src="/immagini/x.png"></a>
+								</div>
+							</div>
+								<div class="annuncioCognome">[[${annuncio.cognome}]]</div>
+								<div class="annuncioTesto">[[${annuncio.testo}]] </div>
+								<div class="annuncioEmail"> Email : [[${annuncio.email}]]</div>
+								<div class="annuncioTelefono">Telefono: [[${annuncio.telefono}]]</div>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		
+		<div class="separatore2" th:if="${separatore == 'si'}"></div>
+		
+		
+		
+		<div class="annuncioFreccie">
+			<a th:href="'/lavoro2/'  + @{${prof}} + '/' +@{${page-1}}">
+				<div th:if="${paginaPrima == 'no'}" class="containerFrecciaBefore"><img src="/immagini/freccia2.png"></div>
+			</a>
+			<div th:if="${paginaPrima == 'no'}"   class="annuncioBefore">Pagina precedente</div>
+			
+			
+			<div th:if="${paginaFinale == 'no'}"   class="annuncioNext">Pagina successiva</div>
+			<a th:href="'/lavoro2/'  + @{${prof}} + '/' +@{${page+1}}">
+				<div th:if="${paginaFinale == 'no'}" class="containerFreccia"><img src="/immagini/freccia.png"></div>
+			</a>
+		</div>
+
+
+</div>
+
+
+<div th:if="${paginaVuota == 'si'}">
+<h1 class="centrolavoro1">Nessun annuncio presente</h1>	
+</div>
+
+
+
+
+<div class="separatore"></div>
+
+
+
+<div class="baseBasso">
+<div class="baseCentroSupporto">Search and Work</div>
+</div>
+
+
+
+
+<script>
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
+
+
+</body>
+</html>

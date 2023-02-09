@@ -1,0 +1,147 @@
+<html>
+<head>
+<link rel="stylesheet" href="/layout/styles/baseL.css" type="text/css">
+</head>
+<body>
+
+<div class="baseAlto">
+		<div class="containerSW">
+				<a th:href="@{/home}">
+					<img src="/immagini/sew2-removebg-preview.png">
+				</a>
+		</div>
+</div>
+<div class="baseDati">
+	<a th:href="@{/Profilo}">
+		<div class="baseDatiUsername">[[${utente.username}]]</div>
+		<div class="sotto5px">
+	</a>
+		<a th:href="@{/logout}">Logout</a>
+	</div>
+</div>
+
+<div class="tastoBackHome">
+				<a th:href="@{/home}" class="tastoBackHomeimg">
+					<img src="/immagini/freccia2.png">
+				</a>
+			<div class="sotto25pxDestra5px">Torna alla home</div>
+			</div>
+[[${annuncio.id}]]
+<div class="creaAnnuncioTabella">
+	<table class="creaAnnuncioTabellaBordo" border="1" >
+		<tr>
+			<td>
+			<form th:action="@{/ModificaAnnuncio}" class="creaAnnuncioFormPosizionamento" method="POST" name="form">
+							<div class="creaAnnuncioAggiustaposizione">	
+								<div class="creaAnnuncioNome">Inserisci Nome:<input class="creaAnnuncioInputNome" name="Nome" type="text" value="ciao" placeholder="Nome" id="Nome" th:field="${annuncio.nome}"></div>
+								<div class="creaAnnuncioTipologia">
+								<div class="dropdown">
+									  <button type="button" onclick="myFunction()" class="dropbtn" th:text="Professione" name="pulsante" id="pulsante"></button>
+									  	<div id="myDropdown" class="dropdown-content">
+										  	<a><div name="Tipologia" onclick="funzioneTrans1()" >tempo indeterminato</div></a>
+										    <a><div name="Tipologia" onclick="funzioneTrans2()" >tempo determinato</div></a>
+										    <a><div name="Tipologia" onclick="funzioneTrans3()" >part-time</div></a>
+										    <a><div name="Tipologia" onclick="funzioneTrans4()" >apprendistato</div></a>
+										    <a><div name="Tipologia" onclick="funzioneTrans5()" >intermittente</div></a>
+										    <a><div name="Tipologia" onclick="funzioneTrans6()" >somministrazione</div></a>
+										    
+									  </div>
+									</div>
+								</div>
+							</div>
+								<div class="creaAnnuncioCognome">Inserisci Cognome:<input class="creaAnnuncioInputCognome" name="Cognome" type="text" placeholder="Cognome" id="Cognome" th:field="${annuncio.cognome}"></div>
+								<div class="creaAnnuncioTesto">Inserisci Testo <br><br> <textarea  cols="30" rows="10" class="creaAnnuncioInputTesto" name="Testo" type="text"  id="Testo" th:field="${annuncio.testo}"></textarea></div>
+								<div class="creaAnnuncioEmail"> Inserisci Email: <input class="creaAnnuncioInputEmail" name="Email" type="text" placeholder="Email" id="Email" th:field="${annuncio.email}"> </div>
+								<div class="creaAnnuncioTelefono">Inserisci Telefono: <input class="creaAnnuncioInputTelefono" name="Telefono" type="text" placeholder="Telefono" id="Telefono" th:field="${annuncio.telefono}"></div>
+					<input name="nascosto" id="nascosto" class="creaAnnuncioInputNascosto" th:field="${annuncio.tipologia}">
+					<input name="nascosto2" id="nascosto2" class="creaAnnuncioInputNascosto" th:field="${annuncio.classificazione}">
+					<div class="creaAnnuncioInvia"><input class="tastoLogin" type="submit" value="Modifica" ></div>
+					</form>
+			</td>
+		</tr>
+	</table>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="separatore"></div>
+<div class="baseBasso">
+<div class="baseCentroSupporto">Search and Work</div>
+</div>
+<script>
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+
+
+
+
+function funzioneTrans1(){
+	document.getElementById('pulsante').innerHTML = "tempo indeterminato";
+	document.form.nascosto.value="indeterminato";
+	document.form.nascosto2.value="DIPENDENTE";
+}
+function funzioneTrans2(){
+	document.getElementById('pulsante').innerHTML = "tempo determinato";
+	document.form.nascosto.value="determinato";
+	document.form.nascosto2.value="DIPENDENTE";
+}
+function funzioneTrans3(){
+	document.getElementById('pulsante').innerHTML = "part-time";
+	document.form.nascosto.value="part-time";
+	document.form.nascosto2.value="DIPENDENTE";
+}
+function funzioneTrans4(){
+	document.getElementById('pulsante').innerHTML = "apprendistato";
+	document.form.nascosto.value="apprendistato";
+	document.form.nascosto2.value="DIPENDENTE";
+}
+function funzioneTrans5(){
+	document.getElementById('pulsante').innerHTML = "intermittente";
+	document.form.nascosto.value="intermittente";
+	document.form.nascosto2.value="DIPENDENTE";
+}
+function funzioneTrans6(){
+	document.getElementById('pulsante').innerHTML = "somministrazione";
+	document.form.nascosto.value="somministrazione";
+	document.form.nascosto2.value="DIPENDENTE";
+}
+
+</script>
+
+
+
+</body>
+</html>
